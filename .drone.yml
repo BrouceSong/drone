@@ -4,7 +4,7 @@ workspace:
 
 pipeline:
   build:
-    image: golang:1.13
+    image: golang
     # # pull: true
     # environment:
     #   - KEY=VALUE
