@@ -50,4 +50,4 @@ services:
       - TZ=Asia/Shanghai
     restart: always
 networks:
-  dronenet:					# 让drone-server和drone-agent处于一个网络中，方便进行RPC通信
+  dronenet: # 让drone-server和drone-agent处于一个网络中，方便进行RPC通信
