@@ -1,5 +1,5 @@
 workspace:
-  base: /srv/drone-demo
+  base: /home/songwenwen/www/api
   path: .
 
 pipeline:
