@@ -19,13 +19,13 @@ pipeline:
             - CGO_ENABLED=0 go build -o api
             - ls -l
     run:
-        image: plugins/docker # 构建docker镜像专用镜像
+        image: plugins/docker
         volumes:
-            - name: docker # 挂载下面定义的Volumn
-        path: /var/run/docker.sock # 与宿主机用同一docker
+            - name: docker
+        path: /var/run/docker.sock
         script:
             - docker build -t api:v1 .
-            - docker rm -f go-api || true # 这里这样是因为如果不存在docker-demo，rm会报错
+            - docker rm -f go-api || true
             - docker run -d --rm --name go-api -p 8001:8001 api:v1
     # docker:
     #     image: plugins/docker
