@@ -12,6 +12,6 @@ pipeline:
       - pwd
       - go env
       - go version
+      - go test -v
       - go build -o api
       - ls -l
-      - ./api &

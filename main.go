@@ -10,5 +10,9 @@ func main() {
 		w.Write([]byte("hello world!"))
 	})
 
-	http.ListenAndServe("127.0.0.1:8080", nil)
+	http.ListenAndServe("0.0.0.0:8080", nil)
+}
+
+func hello() string {
+	return "hello"
 }
