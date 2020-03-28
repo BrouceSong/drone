@@ -8,7 +8,7 @@ import (
 func main() {
 	fmt.Println("start go api server!")
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("hello world!"))
+		w.Write([]byte("hello world123!"))
 	})
 
 	http.ListenAndServe("0.0.0.0:8001", nil)
