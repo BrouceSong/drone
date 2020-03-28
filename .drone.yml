@@ -20,7 +20,9 @@ pipeline:
             - ls -l
     run:
         image: plugins/docker
-        tags: api:v1
+        repo: api
+        dockerfile: ./Dockerfile
+        tags: v1
         script:
             #- docker build -t api:v1 .
             - docker rm -f go-api || true # 这里这样是因为如果不存在docker-demo，rm会报错
