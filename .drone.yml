@@ -15,3 +15,4 @@ pipeline:
       - go version
       - go test
       - go build
+      - ls -l
