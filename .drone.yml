@@ -20,7 +20,10 @@ pipeline:
             - ls -l
     run:
         image: plugins/docker
-        commands:
-            #- ./run.sh
-            - docker build -t api:v1 .
-            - docker run -d --rm --name go-api -p 8001:8001 api:v1
+        repo: api
+        tags: v1
+        debug: true
+        # commands:
+        #     #- ./run.sh
+        #     - docker build -t api:v1 .
+        #     - docker run -d --rm --name go-api -p 8001:8001 api:v1
