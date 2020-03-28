@@ -19,10 +19,12 @@ pipeline:
             - CGO_ENABLED=0 go build -o api
             - ls -l
     docker:
+        image: golang:1.13.6
         commands:
             - docker build -t api:v1 .
             - docker images
     run:
+        image: golang:1.13.6
         commands:
             - docker ps
             - docker stop go-api
