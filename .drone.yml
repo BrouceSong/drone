@@ -21,6 +21,9 @@ pipeline:
     docker:
         image: docker
         commands:
+            - sudo service docker restart
+            - sudo service docker status
+            - docker version
             - docker build -t api:v1 .
             - docker images
     run:
