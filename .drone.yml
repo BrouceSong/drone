@@ -20,8 +20,6 @@ pipeline:
             - ls -l
     run:
         image: plugins/docker
-        volumes:
-            - name: docker
         path: /var/run/docker.sock
         script:
             - docker build -t api:v1 .
