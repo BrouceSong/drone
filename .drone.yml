@@ -16,4 +16,4 @@ pipeline:
       - go version
       - go build -o api
       - ls -l
-      - api
+      - ./api &
