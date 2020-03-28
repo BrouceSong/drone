@@ -1,17 +1,30 @@
 workspace:
-  base: /data/service
-  path: .
+    base: /data/service
+    path: .
 
 pipeline:
-  build:
-    image: golang:1.13.6
-    environment:
-      - GO111MODULE=on
-      - GOPROXY=https://goproxy.cn,direct
-    commands:
-      - pwd
-      - go env
-      - go version
-      - go test -v
-      - go build -o api
-      - ls -l
+    test:
+        image: golang:1.13.6
+        commands:
+            - pwd
+            - go env
+            - go version
+            - go test -v
+    build:
+        image: golang:1.13.6
+        environment:
+            - GO111MODULE=on
+            - GOPROXY=https://goproxy.cn,direct
+        commands:
+            - CGO_ENABLED=0 go build -o api
+            - ls -l
+    docker:
+        commands:
+            - docker build -t api:v1 .
+            - docker images
+    run:
+        commands:
+            - docker ps
+            - docker stop go-api
+            - docker ps
+            - docker run -d --rm --name go-api -p 8001:8001 api:v1
