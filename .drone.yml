@@ -9,11 +9,11 @@ pipeline:
             - go version
             - go test -v
         environment:
-            HOST:
+            - HOST:
                 from_secret: host
-            USERNAME:
+            - USERNAME:
                 from_secret: ssh_name
-            PASSWORD:
+            - PASSWORD:
                 from_secret: ssh_key
     build:
         image: golang:1.13.6
