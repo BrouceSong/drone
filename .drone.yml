@@ -20,17 +20,12 @@ pipeline:
             - ls -l
     run:
         image: appleboy/drone-ssh
-        environment:
-            host:
-              from_secret: host
-            ssh_name:
-              from_secret: ssh_name
-            ssh_pass:
-            from_secret: ssh_pass
-        host: $host
+        host:
+            from_secret: host
         port: 22
-        username: $ssh_name
-        password: $ssh_pass
+        username:
+            from_secret: ssh_name
+        secrets: [ssh_key]
         script:
             - cd /home/songwenwen/www/api && git pull origin master
             - CGO_ENABLED=0 go build -o api
