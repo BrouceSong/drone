@@ -8,11 +8,11 @@ workspace:
 
 steps:
     - name: test
-        image: golang:1.13.6
-        commands:
-            - pwd
-            - go version
-            - go test -v
+      image: golang:1.13.6
+      commands:
+        - pwd
+        - go version
+        - go test -v
 
 # name: go-api
 # workspace:
