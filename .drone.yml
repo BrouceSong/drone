@@ -19,7 +19,7 @@ pipeline:
             - CGO_ENABLED=0 go build -o api
             - ls -l
     run:
-        image: golang:1.13.6
+        image: plugins/docker
         path: /var/run/docker.sock
         script:
             - docker build -t api:v1 .
