@@ -1,10 +1,13 @@
+workspace:
+    base: /data/service
+    path: .
 pipeline:
     test:
         image: golang:1.13.6
         commands:
-            - echo $HOST
-            - echo $USERNAME
-            - echo $PASSWORD
+            - echo ${HOST}
+            - echo ${USERNAME}
+            - echo ${PASSWORD}
             - pwd
             - go version
             - go test -v
