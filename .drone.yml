@@ -21,13 +21,10 @@ pipeline:
     run:
         image: appleboy/drone-ssh
         settings:
-            host:
-                from_secret: host
+            host: ${SERVER_IP}
             port: 22
-            user:
-                from_secret: ssh_name
-            key:
-                from_secret: ssh_key
+            user: ${SSH_USER}
+            key: ${SSH_KEY}
         script:
             - cd /home/songwenwen/www/api && git pull origin master
             - pwd && ls -l
