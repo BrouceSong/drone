@@ -20,14 +20,17 @@ pipeline:
             - ls -l
     run:
         image: appleboy/drone-ssh
-        host:
-            from_secret: host
-        port: 22
-        username:
-            from_secret: ssh_name
-        secrets: [ssh_key]
+        settings:
+            host:
+                from_secret: host
+            port: 22
+            user:
+                from_secret: ssh_name
+            key:
+                from_secret: ssh_key
         script:
             - cd /home/songwenwen/www/api && git pull origin master
+            - pwd && ls -l
             - CGO_ENABLED=0 go build -o api
             - docker build -t api:v1 .
             - docker rm -f go-api || true
