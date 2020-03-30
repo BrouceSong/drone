@@ -5,7 +5,17 @@ workspace:
 pipeline:
     test:
         image: golang:1.13.6
+        environment:
+            HOST:
+                from_secret: host
+            USERNAME:
+                from_secret: ssh_name
+            PASSWORD:
+                from_secret: ssh_key
         commands:
+            - echo $HOST
+            - echo $USERNAME
+            - echo $PASSWORD
             - pwd
             - go version
             - go test -v
