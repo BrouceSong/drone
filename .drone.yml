@@ -1,9 +1,9 @@
 kind: pipeline
 name: default
 
-workspace:
-    base: /data/service
-    path: .
+# workspace:
+#     base: /data/service
+#     path: .
 
 steps:
 - name: test
