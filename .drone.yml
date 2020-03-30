@@ -3,16 +3,19 @@ kind: pipeline
 name: drone
 
 workspace:
-    base: /data/service
-    path: .
+  base: /data/service
+  path: .
 
 steps:
-    - name: test
-      image: golang:1.13.6
-      commands:
-        - pwd
-        - go version
-        - go test -v
+- name: test
+  image: golang:1.13.6
+  commands:
+    - pwd
+    - go version
+    - go test -v
+trigger:
+  branch:
+    - master
 
 # name: go-api
 # workspace:
