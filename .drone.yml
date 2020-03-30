@@ -19,12 +19,31 @@ pipeline:
             - CGO_ENABLED=0 go build -o api
             - ls -l
     run:
-        image: plugins/docker
-        path: /var/run/docker.sock
+        image: appleboy/drone-ssh
+        environment:
+            host:
+              from_secret: host
+            ssh_name:
+              from_secret: ssh_name
+            ssh_pass:
+            from_secret: ssh_pass
+        host: $host
+        port: 22
+        username: $ssh_name
+        password: $ssh_pass
         script:
+            - cd /home/songwenwen/www/api && git pull origin master
+            - CGO_ENABLED=0 go build -o api
             - docker build -t api:v1 .
             - docker rm -f go-api || true
             - docker run -d --rm --name go-api -p 8001:8001 api:v1
+    # run:
+    #     image: plugins/docker
+    #     path: /var/run/docker.sock
+    #     script:
+    #         - docker build -t api:v1 .
+    #         - docker rm -f go-api || true
+    #         - docker run -d --rm --name go-api -p 8001:8001 api:v1
     # docker:
     #     image: plugins/docker
     #     repo: api
