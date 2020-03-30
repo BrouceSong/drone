@@ -20,8 +20,6 @@ pipeline:
             - ls -l
     run:
         image: appleboy/drone-ssh
-        commands:
-            - echo $host, $user, $key
         settings:
             host:
                 from_secret: host
