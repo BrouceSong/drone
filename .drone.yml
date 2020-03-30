@@ -5,19 +5,9 @@ pipeline:
     test:
         image: golang:1.13.6
         commands:
-            - echo ${HOST}
-            - echo ${USERNAME}
-            - echo ${PASSWORD}
             - pwd
             - go version
             - go test -v
-        environment:
-            - HOST:
-                from_secret: host
-            - USERNAME:
-                from_secret: ssh_name
-            - PASSWORD:
-                from_secret: ssh_key
     build:
         image: golang:1.13.6
         environment:
