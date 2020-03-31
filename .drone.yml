@@ -27,6 +27,8 @@ steps:
 
 - name: run
   image: golang:1.13.6
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
   commands:
     - cd /home/songwenwen/www/api && git pull origin master
     - pwd && ls -l
