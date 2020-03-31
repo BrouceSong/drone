@@ -31,7 +31,7 @@ pipeline:
         script:
             - cd /home/songwenwen/www/api && git pull origin master
             - pwd && ls -l
-            - ls -l
+            #- ls -l
             - CGO_ENABLED=0 go build -o api
             - docker build -t api:v1 .
             - docker rm -f go-api || true

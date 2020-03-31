@@ -8,7 +8,7 @@ services:
       - dronenet        # 让drone-server和drone-agent处于一个网络中，方便进行RPC通信
     ports:
       - '10081:80'      # Web管理面板的入口 PROTO=http  时使用该端口
-      - '10082:443'     # Web管理面板的入口 PROTO=https 时使用该端口
+      #- '10082:443'     # Web管理面板的入口 PROTO=https 时使用该端口
       - '10083:9000'    # RPC服务端口
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock   # docker.sock [1]
