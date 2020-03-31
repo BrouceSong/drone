@@ -27,7 +27,7 @@ steps:
 
 - name: run
   image: appleboy/drone-ssh
-  settings:
+  environment:
     host:
       from_secret : host
     port: 22
@@ -35,6 +35,11 @@ steps:
       from_secret : ssh_name
     key:
       from_secret : ssh_key
+  settings:
+    host: $host
+    port: $port
+    user: $user
+    key: $key
   script:
     - cd /home/songwenwen/www/api && git pull origin master
     - pwd && ls -l
@@ -43,6 +48,3 @@ steps:
     - docker build -t api:v1 .
     - docker rm -f go-api || true
     - docker run -d --rm --name go-api -p 8001:8001 api:v1
-
-image_pull_secrets:
-  - dockerconfig
