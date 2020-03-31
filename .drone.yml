@@ -30,7 +30,7 @@ pipeline:
                 from_secret : ssh_key
         script:
             - cd /home/songwenwen/www/api && git pull origin master
-            - pwd
+            - pwd && ls -l
             - ls -l
             - CGO_ENABLED=0 go build -o api
             - docker build -t api:v1 .
