@@ -36,10 +36,10 @@ steps:
     key:
       from_secret : ssh_key
   settings:
-    host: $host
-    port: $port
-    user: $user
-    key: $key
+    host: host
+    port: port
+    user: user
+    key: key
   script:
     - cd /home/songwenwen/www/api && git pull origin master
     - pwd && ls -l
