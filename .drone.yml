@@ -29,7 +29,6 @@ pipeline:
             key:
                 from_secret : ssh_key
         script:
-            - echo $KEY
             - cd /home/songwenwen/www/api && git pull origin master
             - pwd && ls -l
             - CGO_ENABLED=0 go build -o api
