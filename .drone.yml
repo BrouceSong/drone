@@ -14,7 +14,6 @@ steps:
     - pwd
     - go version
     - go test -v
-
 - name: build
   image: golang:1.13.6
   environment:
