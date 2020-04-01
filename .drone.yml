@@ -23,7 +23,7 @@ environment:
 commands:
     - go env
     - CGO_ENABLED=0 go build -o api
-    - ls -l
+    - ls -l && pwd
 
 - name: run
 image: appleboy/drone-ssh
