@@ -9,7 +9,7 @@ workspace:
 
 steps:
 - name: test
-image: golang:1.13.6
+image: golang
 commands:
     - pwd
 #     - go version
