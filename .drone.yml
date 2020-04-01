@@ -24,7 +24,7 @@ steps:
     - go env
     - CGO_ENABLED=0 go build -o api
     - ls -l
-    - pwd
+    #- pwd
 
 - name: run
   image: appleboy/drone-ssh
