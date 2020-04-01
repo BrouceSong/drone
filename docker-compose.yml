@@ -5,7 +5,8 @@ services:
     ports:
       - "10081:80"
     volumes:
-      - /home/songwenwen/local/drone:/var/lib/drone/
+      - /var/run/docker.sock:/var/run/docker.sock   # docker.sock [1]
+      - /var/data/drone/:/var/lib/drone             # drone数据存放路径
     networks:
       - dronenet
     env_file:

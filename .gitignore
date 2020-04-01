@@ -1,2 +1,3 @@
-/.vscode
-.DS_Store
+.agent_env
+S_Store
+.server_env
