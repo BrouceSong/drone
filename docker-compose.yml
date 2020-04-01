@@ -6,6 +6,8 @@ services:
       - "10081:80"
     volumes:
       - /home/songwenwen/local/drone:/var/lib/drone/
+    networks:
+      - dronenet
     environment:
       - DRONE_OPEN=true
       - DRONE_SERVER_HOST=drone-server
@@ -18,6 +20,8 @@ services:
       - DRONE_RPC_SECRET=${DRONE_RPC_SECRET}
   drone-agent:
     image: drone/agent:1.0.0-rc.5
+    networks:
+      - dronenet
     depends_on:
       - drone-server
     environment:
@@ -25,7 +29,5 @@ services:
       - DRONE_RPC_SECRET=${DRONE_RPC_SECRET}
       - DRONE_DEBUG=true
       - DOCKER_HOST=tcp://docker-bind:2375
-  docker-bind:
-     image: docker:dind
-     privileged: true
-     command: --storage-driver=overlay
+networks:
+  dronenet:
