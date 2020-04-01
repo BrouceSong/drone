@@ -9,38 +9,34 @@ workspace:
 
 steps:
 - name: test
-  image: golang:1.13.6
-  commands:
+image: golang:1.13.6
+commands:
     - pwd
     - go version
     - go test -v
 
 - name: build
-  image: golang:1.13.6
-  environment:
+image: golang:1.13.6
+environment:
     GO111MODULE: on
     GOPROXY: https://goproxy.cn,direct
-  commands:
+commands:
     - go env
     - CGO_ENABLED=0 go build -o api
     - ls -l
 
 - name: run
-  image: appleboy/drone-ssh
-  environment:
+image: appleboy/drone-ssh
+pull: true
+settings:
     host:
-      from_secret : host
+    from_secret: host
     port: 22
     user:
-      from_secret : ssh_name
+    from_secret: ssh_name
     key:
-      from_secret : ssh_key
-  settings:
-    host: host
-    port: port
-    user: user
-    key: key
-  script:
+    from_secret: ssh_key
+script:
     - cd /home/songwenwen/www/api && git pull origin master
     - pwd && ls -l
     #- ls -l
