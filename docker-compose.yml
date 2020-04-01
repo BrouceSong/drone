@@ -7,17 +7,14 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock   # docker.sock [1]
       - /var/data/drone/:/var/lib/drone             # drone数据存放路径
-    networks:
-      - dronenet
     env_file:
       - /home/songwenwen/www/api/.server_env
   drone-agent:
     image: drone/agent:1.0.0-rc.5
-    networks:
-      - dronenet
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
     depends_on:
       - drone-server
     env_file:
       - /home/songwenwen/www/api/.agent_env
-networks:
-  dronenet:
