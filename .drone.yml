@@ -1,0 +1,50 @@
+---
+kind: pipeline
+type: docker
+name: go-api
+
+workspace:
+  base: /data/service
+  path: .
+
+steps:
+- name: test
+  image: golang:1.13.6
+  commands:
+    - pwd
+    - go version
+    - go test -v
+
+- name: build
+  image: golang:1.13.6
+  environment:
+    GO111MODULE: on
+    GOPROXY: https://goproxy.cn,direct
+  commands:
+    - go env
+    - CGO_ENABLED=0 go build -o api
+    - ls -l
+    #- pwd
+
+- name: run
+  image: appleboy/drone-ssh
+  pull: true
+  settings:
+    host:
+      from_secret: host
+    port: 22
+    username:
+      from_secret: ssh_name
+    password:
+      from_secret: ssh_passwd
+    script:
+      - whoami
+      - pwd && ls -l
+      - cd /home/songwenwen/www/api/
+      - git pull origin master
+      - pwd && ls -l
+      #- ls -l
+      - CGO_ENABLED=0 go build -o api
+      - docker build -t api:v1 .
+      - docker rm -f go-api || true
+      - docker run -d --rm --name go-api -p 8001:8001 api:v1
