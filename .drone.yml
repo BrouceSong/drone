@@ -31,12 +31,12 @@ steps:
   pull: true
   settings:
     host:
-    from_secret: host
+      from_secret: host
     port: 22
     user:
-    from_secret: ssh_name
+      from_secret: ssh_name
     key:
-    from_secret: ssh_key
+      from_secret: ssh_key
   script:
     - cd /home/songwenwen/www/api && git pull origin master
     - pwd && ls -l
