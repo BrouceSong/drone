@@ -1,23 +1,26 @@
 version: '3'
 services:
   drone-server:
-    image: drone/drone:1.0.0-rc.5
+    image: drone/drone:1.7
+    container_name: drone-server
+    networks:
+      - dronenet
     ports:
       - "10081:80"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock   # docker.sock [1]
       - /var/data/drone/:/var/lib/drone             # drone数据存放路径
-    networks:
-      - dronenet
+    restart: always
     env_file:
       - /home/songwenwen/www/api/.server_env
   drone-agent:
     image: drone/agent:1.0.0-rc.5
+    container_name: drone-agent
+    networks:
+      - dronenet
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
-    networks:
-      - dronenet
     depends_on:
       - drone-server
     env_file:
