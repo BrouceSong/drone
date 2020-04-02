@@ -37,8 +37,11 @@ steps:
       from_secret: ssh_name
     password:
       from_secret: ssh_passwd
-  commands:
-    - cd /home/songwenwen/www/api && git pull origin master
+  script:
+    - whoami
+    - pwd && ls -l
+    - cd /home/songwenwen/www/api
+    - git pull origin master
     - pwd && ls -l
     #- ls -l
     - CGO_ENABLED=0 go build -o api
