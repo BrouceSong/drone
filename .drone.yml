@@ -37,7 +37,7 @@ steps:
       from_secret: ssh_name
     password:
       from_secret: ssh_passwd
-  script:
+  commands:
     - cd /home/songwenwen/www/api && git pull origin master
     - pwd && ls -l
     #- ls -l
