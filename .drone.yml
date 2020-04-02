@@ -9,7 +9,7 @@ workspace:
 
 steps:
 - name: test
-  image: golang
+  image: golang:1.13.6
   commands:
     - pwd
     - go version
@@ -33,7 +33,7 @@ steps:
     host:
       from_secret: host
     port: 22
-    user:
+    username:
       from_secret: ssh_name
     key:
       from_secret: ssh_key
